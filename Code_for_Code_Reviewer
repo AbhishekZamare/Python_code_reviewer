@@ -1,0 +1,38 @@
+import streamlit as st
+import google.generativeai as genai
+
+
+
+genai.configure(api_key="AIzaSyDp3l85i2CLXkKNIq49jSkrC1tKaTL7qJQ")
+
+
+
+Sys_prompt = """ You are an expert Python code reviewer and fixer.
+ Your job is to analyze Python code for errors, and provide fixed code and give all the information regarding code in bullet points. 
+
+Response
+
+Suggested Fixes:
+   - Explain how to fix each issue.
+   - Suggest best practices to improve efficiency and readability.
+
+Fixed Code:
+   ```python
+   (Provide the fully corrected version of the code here)"""
+
+model = genai.GenerativeModel("models/gemini-1.5-flash",
+    system_instruction= Sys_prompt )
+
+  
+
+
+
+st.title("Code Viewer - AI Code Reviewer ")
+st.subheader("Submit your Python code for review")
+
+user_prompt = st.text_area("Paste your Python code here:", placeholder="Type your query here..!")
+submit_button = st.button("Review Code")
+
+if submit_button==True and user_prompt:
+        response=model.generate_content(user_prompt)
+        st.write(response)
