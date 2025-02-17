@@ -3,7 +3,7 @@ import google.generativeai as genai
 
 
 
-genai.configure(api_key="AIzaSyDp3l85i2CLXkKNIq49jSkrC1tKaTL7qJQ")
+genai.configure(api_key="AI***************************JQ")
 
 
 
